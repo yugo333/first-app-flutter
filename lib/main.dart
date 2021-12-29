@@ -123,8 +123,7 @@ class MyApp extends StatelessWidget {
                       // print('yyyy');
                       await Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => const VideoPage()),
+                        MaterialPageRoute(builder: (context) => VideoPage()),
                       );
                     },
                     contentPadding: const EdgeInsets.all(8),
