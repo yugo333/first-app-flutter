@@ -16,76 +16,82 @@ For help getting started with Flutter, view our
 samples, guidance on mobile development, and a full API reference.
 # first-app-flutter
 
-#AR手順
+# AR手順
 
-##1
+## 1
 
 /pubspec.yaml に
-`dependencies:
-  flutter:
-    sdk: flutter
 
-  cupertino_icons: ^1.0.2
-  arcore_flutter_plugin: ^0.0.2+2   //追記
-  `
+
+    dependencies:
+      flutter:
+        sdk: flutter
+
+      cupertino_icons: ^1.0.2
+      arcore_flutter_plugin: ^0.0.2+2   //追記
+
 
 コマンド実行
 `$ flutter pub get`
 
-##2
+## 2
 
 /android/app/build.gradle に追記変更
-`
-android {
-    // compileSdkVersionの指定はもともとあるはず
-    compileSdkVersion 28
 
-    // 省略
+    android {
+        // compileSdkVersionの指定はもともとあるはず
+        compileSdkVersion 28
 
-    // compileOptionsの指定は追加する
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
+        // 省略
+
+        // compileOptionsの指定は追加する
+        compileOptions {
+            sourceCompatibility 1.8
+            targetCompatibility 1.8
+        }
+
+        // defaultConfigのminSdkVersion指定を24に書き換える
+        defaultConfig {
+            // 省略
+            minSdkVersion 24
+            // 省略
+        }
+
+        // 省略
     }
 
-    // defaultConfigのminSdkVersion指定を24に書き換える
-    defaultConfig {
+    // もともとあるdependenciesの指定に以下の3行を追加する
+    dependencies {
         // 省略
-        minSdkVersion 24
-        // 省略
+        implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.8.0'
+        implementation 'com.google.ar.sceneform:core:1.8.0'
+        implementation 'com.google.ar:core:1.8.0'
     }
 
-    // 省略
-}
 
-// もともとあるdependenciesの指定に以下の3行を追加する
-dependencies {
-    // 省略
-    implementation 'com.google.ar.sceneform.ux:sceneform-ux:1.8.0'
-    implementation 'com.google.ar.sceneform:core:1.8.0'
-    implementation 'com.google.ar:core:1.8.0'
-}
-`
+## 3
 
-##3
 /android/app/src/main/AndroidManifest.xml に追記
 manifest直下に
-`
-<uses-sdk android:minSdkVersion="24" />
-<uses-permission android:name="android.permission.CAMERA" />
-<uses-feature android:name="android.hardware.camera.ar" />
-`
-<meta-data　android:name="flutterEmbedding"　android:value="2"/> の下に
-`
-<meta-data android:name="com.google.ar.core" android:value="optional" />
-`
 
-##4
+    <uses-sdk android:minSdkVersion="24" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-feature android:name="android.hardware.camera.ar" />
+
+<meta-data　android:name="flutterEmbedding"　android:value="2"/> の下に
+
+    <meta-data android:name="com.google.ar.core" android:value="optional" />
+
+
+## 4 
+
 https://www.manektech.com/blog/build-augmented-reality-ar-application-in-flutter
+
 上記のURLのステップ5からを参考にmain.dartになどに記載する
 
 ## null safety バグ
 arcore_flutter_pluginが　古い感じなのかエラー吐くので下記のイシューで対応
+
 
 https://github.com/dart-lang/language/issues/1475
 
