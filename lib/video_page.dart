@@ -23,6 +23,7 @@ class _HelloWorldState extends State<VideoPage> {
         title: const Text('AR App'),
       ),
       body: ArCoreView(
+        enableTapRecognizer: true,
         onArCoreViewCreated: _onArCoreViewCreated,
       ),
     );
@@ -51,20 +52,29 @@ class _HelloWorldState extends State<VideoPage> {
   }
 
   void _addCylindre(ArCoreController controller) {
-    final material = ArCoreMaterial(
-      color: Colors.red,
-      reflectance: 1.0,
-    );
-    final cylindre = ArCoreCylinder(
-      materials: [material],
-      radius: 0.5,
-      height: 0.3,
-    );
-    final node = ArCoreNode(
-      shape: cylindre,
+    // final material = ArCoreMaterial(
+    //   color: Colors.red,
+    //   reflectance: 1.0,
+    // );
+    // final cylindre = ArCoreCylinder(
+    //   materials: [material],
+    //   radius: 0.5,
+    //   height: 0.3,
+    // );
+    // final node = ArCoreNode(
+    //   shape: cylindre,
+    //   position: vector.Vector3(0.0, -0.5, -2.0),
+    // );
+    // controller.addArCoreNode(node);
+    final toucanNode = ArCoreReferenceNode(
+      name: "Toucano",
+      objectUrl:
+          // "https://github.com/KhronosGroup/glTF-Sample-Models/raw/master/2.0/Duck/glTF/Duck.gltf",
+          "https://github.com/yugo333/plateauCadHiCity/blob/main/src/cityGML/model/pin.gltf",
       position: vector.Vector3(0.0, -0.5, -2.0),
     );
-    controller.addArCoreNode(node);
+
+    controller.addArCoreNodeWithAnchor(toucanNode);
   }
 
   void _addCube(ArCoreController controller) {

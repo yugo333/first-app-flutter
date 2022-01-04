@@ -48,7 +48,7 @@ class MyApp extends StatelessWidget {
                   color: Colors.blue,
                 ),
                 onPressed: () {
-                  print('yyyy');
+                  print(((123.456 * 100) + (333.333 * 100)) / 100);
                 },
               ),
             ),
