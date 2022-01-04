@@ -95,3 +95,8 @@ arcore_flutter_pluginが　古い感じなのかエラー吐くので下記の�
 
 https://github.com/dart-lang/language/issues/1475
 
+
+
+# model
+リモートからgltf読み込みできる
+Add ArCoreReferenceNode for use local object (.sfb) or remote objcet (.gltf)
